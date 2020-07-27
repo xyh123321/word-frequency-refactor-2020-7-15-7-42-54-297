@@ -10,6 +10,17 @@ import java.time.LocalDateTime;
 public class WordFrequencyGame {
     public String getResult(String inputStr) {
 
+        List<Input> inputList = caluWordsFrequency(inputStr);
+
+        StringJoiner joiner = new StringJoiner("\n");
+        for (Input w : inputList) {
+            String s = w.getValue() + " " + w.getWordCount();
+            joiner.add(s);
+        }
+        return joiner.toString();
+    }
+
+    private List<Input> caluWordsFrequency(String inputStr) {
         String[] words = inputStr.split("\\s+");
 
         List<Input> inputList = new ArrayList<>();
@@ -28,13 +39,7 @@ public class WordFrequencyGame {
         inputList = list;
 
         inputList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
-
-        StringJoiner joiner = new StringJoiner("\n");
-        for (Input w : inputList) {
-            String s = w.getValue() + " " + w.getWordCount();
-            joiner.add(s);
-        }
-        return joiner.toString();
+        return inputList;
     }
 
 
