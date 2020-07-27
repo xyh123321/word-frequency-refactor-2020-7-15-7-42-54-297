@@ -10,8 +10,6 @@ import java.time.LocalDateTime;
 public class WordFrequencyGame {
     public String getResult(String inputStr) {
 
-            try {
-
                 //split the input string with 1 to n pieces of spaces
                 String[] arr = inputStr.split("\\s+");
 
@@ -39,9 +37,6 @@ public class WordFrequencyGame {
                     joiner.add(s);
                 }
                 return joiner.toString();
-            } catch (Exception e) {
-                return "Calculate Error";
-            }
         }
 
 
