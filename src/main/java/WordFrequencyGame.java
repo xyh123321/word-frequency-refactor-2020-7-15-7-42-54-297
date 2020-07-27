@@ -1,8 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.StringJoiner;
+import java.util.*;
 import java.io.CharArrayWriter;
 
 import java.time.LocalDateTime;
@@ -10,9 +6,9 @@ import java.time.LocalDateTime;
 public class WordFrequencyGame {
     public String getResult(String inputStr) {
 
-        List<Input> inputList = caluWordsFrequency(inputStr);
+        List<Input> wordsFrequency = caluWordsFrequency(inputStr);
 
-        return formatWordsFrequency(inputList);
+        return formatWordsFrequency(wordsFrequency);
     }
 
     private String formatWordsFrequency(List<Input> inputList) {
@@ -27,21 +23,13 @@ public class WordFrequencyGame {
     private List<Input> caluWordsFrequency(String inputStr) {
         String[] words = inputStr.split("\\s+");
 
-        Map<String, Integer> wordsMap = new HashMap<>();
-
-        for (String word : words) {
-            if(wordsMap.containsKey(word)){
-                wordsMap.put(word, wordsMap.get(word)+1);
-            }else{
-                wordsMap.put(word, 1);
-            }
-        }
-
+        List<String> wordList = Arrays.asList(words);
         List<Input> list = new ArrayList<>();
-        for (Map.Entry<String, Integer> entry : wordsMap.entrySet()) {
-            Input input = new Input(entry.getKey(), entry.getValue());
-            list.add(input);
+        for (String word: new HashSet<>(wordList)) {
+            int count = Collections.frequency(wordList, word);
+            list.add(new Input(word, count));
         }
+
 
         list.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
         return list;
