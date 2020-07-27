@@ -12,6 +12,10 @@ public class WordFrequencyGame {
 
         List<Input> inputList = caluWordsFrequency(inputStr);
 
+        return formatWordsFrequency(inputList);
+    }
+
+    private String formatWordsFrequency(List<Input> inputList) {
         StringJoiner joiner = new StringJoiner("\n");
         for (Input w : inputList) {
             String s = w.getValue() + " " + w.getWordCount();
